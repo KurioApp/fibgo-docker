@@ -11,6 +11,12 @@ before_install:
 script:
   - curl --fail http://127.0.0.1:8080/numbers || exit 1
 
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    docker push uudashr/fibgo
+    fi
+
 after_script:
   - docker stop fibgo-server
   - docker rm -v fibgo-server
