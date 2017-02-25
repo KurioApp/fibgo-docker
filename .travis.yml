@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t uudashr/fibgo
+  - docker build -t uudashr/fibgo .
   - docker run -d -p 127.0.0.1:8080:8080 uudashr/fibgo
   - docker ps -a
 
