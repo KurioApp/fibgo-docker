@@ -1,0 +1,12 @@
+{
+  "name": "fibgo-docker",
+  "version": "1.0.0",
+  "description": "fibgo docker scripts",
+  "main": "index.js",
+  "repository": "https://github.com/KurioApp/fibgo-docker.git",
+  "author": "Nuruddin Ashr <uudashr@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "e2e_test": "node e2e_test.js"
+  }
+}

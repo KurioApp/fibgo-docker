@@ -1,24 +1,56 @@
-sudo: required
+sudo: false
 
-language: bash
+language: node_js
+
+node_js:
+  - "6"
+
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
 
 services:
   - docker
 
-before_install:
-  - docker build -t uudashr/fibgo .
-  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 uudashr/fibgo
-  - docker ps -a
+env:
+  global:
+    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+    - PROJECT_NAME_STG=kurio-dev
+    - CLUSTER_NAME_STG=fibgo-cluster-stg
+    - PROJECT_NAME_PRD=kurio-dev
+    - CLUSTER_NAME_PRD=fibgo-cluster
+    - CLOUDSDK_COMPUTE_ZONE=asia-east1-c
+    - DOCKER_IMAGE_NAME=fibgo
+    - KUBE_DEPLOYMENT_NAME=fibgo-deployment
+    - KUBE_DEPLOYMENT_CONTAINER_NAME=fibgo
+    - NODE_EV=CI
+
+install:
+  - yarn install
 
 script:
-  - curl --fail http://127.0.0.1:8080/numbers || exit 1
+  - yarn test
 
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push uudashr/fibgo;
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
+    rm -rf $HOME/google-cloud-sdk;
+    export CLOUDSDK_DISABLE_PROMPTS=1;
+    curl https://sdk.cloud.google.com | bash;
     fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud version
+  - gcloud --quite components update
+  - gcloud --quite components beta update
+  - gcloud --quite components update kubectl
 
-after_script:
-  - docker stop fibgo-server
-  - docker rm -v fibgo-server
+deploy:
+  - provider: script
+    script: ./deploy-staging.sh
+    skip_cleanup: true
+    on:
+      branch: develop
+  - provider: script
+    script: ./deploy-production.sh
+    skip_cleanup: true
+    on:
+      branch: master
