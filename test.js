@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tape');
-test('e2e test', (t) => {
+test('unit test', (t) => {
   t.comment("All passed")
   t.end();
 });
