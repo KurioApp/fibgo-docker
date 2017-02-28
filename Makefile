@@ -5,10 +5,10 @@ build:
 	@docker build -t $(IMAGE_NAME) .
 
 run:
-	@docker run --rm -it $(IMAGE_NAME)
+	@docker run --rm -it -p 8080:8080 $(IMAGE_NAME)
 
 start:
-	@docker run -d -name $(CONTAINER_NAME) $(IMAGE_NAME)
+	@docker run -d -name $(CONTAINER_NAME) -p 8080:8080 $(IMAGE_NAME)
 
 stop:
 	@docker stop $(CONTAINER_NAME)
