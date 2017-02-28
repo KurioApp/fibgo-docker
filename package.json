@@ -8,5 +8,9 @@
   "license": "MIT",
   "scripts": {
     "e2e_test": "node e2e_test.js"
+  },
+  "devDependencies": {
+    "got": "^6.7.1",
+    "tape": "^4.6.3"
   }
 }
