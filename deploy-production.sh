@@ -14,7 +14,7 @@ gcloud --quiet container clusters get-credentials $CLUSTER_NAME_PRD
 
 gcloud docker push -- asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}
 
-yes | gcloud container images add-tag asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:$TRAVIS_COMMIT asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:latest
+yes | gcloud beta container images add-tag asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:$TRAVIS_COMMIT asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:latest
 
 kubectl config view
 kubectl config current-context
