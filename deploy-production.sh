@@ -12,7 +12,7 @@ gcloud --quiet config set container/cluster $CLUSTER_NAME_PRD
 gcloud --quiet config set compute/zone $CLOUDSDK_COMPUTE_ZONE
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME_PRD
 
-gcloud docker push -- asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}
+gcloud docker -- push asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}
 
 yes | gcloud beta container images add-tag asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:$TRAVIS_COMMIT asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:latest
 
