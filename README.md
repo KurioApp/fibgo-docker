@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/uudashr/fibgo-docker.svg?branch=master)](https://travis-ci.org/uudashr/fibgo-docker)
+[![Build Status](https://travis-ci.org/KurioApp/fibgo-docker.svg?branch=master)](https://travis-ci.org/KurioApp/fibgo-docker)
 
 # fibgo-docker
 
