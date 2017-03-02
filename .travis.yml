@@ -38,9 +38,9 @@ before_deploy:
     curl https://sdk.cloud.google.com | bash;
     fi
   - source $HOME/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components update kubectl
+  - gcloud --quite version
+  - gcloud --quite components update
+  - gcloud --quite components update kubectl
 
 deploy:
   - provider: script
