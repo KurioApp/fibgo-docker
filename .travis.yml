@@ -44,12 +44,12 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: ./deploy-staging.sh
+    script: .travis/deploy-staging.sh
     skip_cleanup: true
     on:
       branch: develop
   - provider: script
-    script: ./deploy-production.sh
+    script: .travis/deploy-production.sh
     skip_cleanup: true
     on:
       branch: master
