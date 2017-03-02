@@ -2,7 +2,7 @@
 
 set -e
 
-docker build -t asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:$TRAVIS_COMMIT
+docker build -t asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:$TRAVIS_COMMIT .
 
 echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
 gcloud auth activate-service-account --keyfile ${HOME}/gcloud-service-key.json
