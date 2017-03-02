@@ -3,11 +3,9 @@
 set -e
 
 docker build -t asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_STG}:$TRAVIS_COMMIT .
-docker images
 
 echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
-cat ${HOME}/gcloud-service-key.json
-gcloud auth activate-service-account --keyfile ${HOME}/gcloud-service-key.json
+gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
 gcloud --quite config set project $PROJECT_NAME
 gcloud --quite config set container/cluster $CLUSTER_NAME_STG
