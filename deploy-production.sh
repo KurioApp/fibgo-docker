@@ -7,10 +7,10 @@ docker build -t asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}:$TRAVIS_COM
 echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
-gcloud --quite config set project $PROJECT_NAME
-gcloud --quite config set container/cluster $CLUSTER_NAME_PRD
-gcloud --quite config set compute/zone $CLOUDSDK_COMPUTE_ZONE
-gcloud --quite container clusters get-credentials $CLUSTER_NAME_PRD
+gcloud --quiet config set project $PROJECT_NAME
+gcloud --quiet config set container/cluster $CLUSTER_NAME_PRD
+gcloud --quiet config set compute/zone $CLOUDSDK_COMPUTE_ZONE
+gcloud --quiet container clusters get-credentials $CLUSTER_NAME_PRD
 
 gcloud docker push -- asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_PRD}
 
