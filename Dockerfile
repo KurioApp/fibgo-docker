@@ -1,5 +1,7 @@
 FROM golang:1.8.0-alpine
 
+ENV REV_NUM 1
+
 RUN apk update && apk upgrade && \
     apk --no-cache --update add git && \
     go get -v github.com/uudashr/fibgo/... && \
