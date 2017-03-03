@@ -21,5 +21,8 @@ kubectl config current-context
 
 kubectl set image deployment/${KUBE_DEPLOYMENT_NAME} ${KUBE_DEPLOYMENT_CONTAINER_NAME}=asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_STG}:$TRAVIS_COMMIT
 
+# Run the test
 sleep 30
-yarn run e2e_test
+ip=$(kubectl get service fibgo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+port=$(kubectl get service fibgo -o jsonpath='{.spec.ports[0].port}')
+yarn run e2e_test ${ip}:${port}
