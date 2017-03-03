@@ -1,6 +1,6 @@
 FROM golang:1.8.0-alpine
 
-ENV REV_NUM 1
+ENV REV_NUM 2
 
 RUN apk update && apk upgrade && \
     apk --no-cache --update add git && \
