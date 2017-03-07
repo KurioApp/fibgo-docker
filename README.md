@@ -13,7 +13,6 @@ $ docker run -d -name fibgo-server -p 8080:8080 uudashr/fibgo
 
 ## Google Container Engine (GKE) Setup
 Make sure the clusters already created along with the deployment.
-Then create the deployment
 
 ```shell
 $ make init-cloud

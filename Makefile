@@ -22,7 +22,12 @@ init-cluster-prod:
 
 init-clusters: init-cluster-stg init-cluster-prod
 
+init-image:
+	@docker build -t fibgo .
+	@docker tag fibgo asia.gcr.io/kurio-dev/fibgo
+	@gcloud docker -- push asia.gcr.io/kurio-dev/fibgo
+
 init-deployment:
 	@kubectl create -f fibgo-app.yaml --record
 
-init-cloud: init-clusters init-deployment
+init-cloud: init-clusters init-image init-deployment
