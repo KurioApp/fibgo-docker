@@ -25,4 +25,4 @@ kubectl set image deployment/${KUBE_DEPLOYMENT_NAME} ${KUBE_DEPLOYMENT_CONTAINER
 sleep 30
 ip=$(kubectl get service fibgo -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 port=$(kubectl get service fibgo -o jsonpath='{.spec.ports[0].port}')
-yarn run e2e_test ${ip}:${port}
+ADDR=${ip}:${port} yarn run e2e_test
