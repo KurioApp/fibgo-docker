@@ -34,10 +34,12 @@ init-image:
 
 init-deployment-stg:
 	@gcloud --quiet config set container/cluster fibgo-cluster-stg
+	@gcloud --quiet container clusters get-credentials fibgo-cluster-stg
 	@kubectl create -f fibgo-app.yaml --record
 
 init-deployment-prod:
 	@gcloud --quiet config set container/cluster fibgo-cluster
+	@gcloud --quiet container clusters get-credentials fibgo-cluster
 	@kubectl create -f fibgo-app.yaml --record
 
 init-deployments: init-deployment-stg init-deployment-prod
