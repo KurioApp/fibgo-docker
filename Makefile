@@ -8,7 +8,7 @@ run:
 	@docker run --rm -it -p 8080:8080 $(IMAGE_NAME)
 
 start:
-	@docker run -d -name $(CONTAINER_NAME) -p 8080:8080 $(IMAGE_NAME)
+	@docker run -d --name $(CONTAINER_NAME) -p 8080:8080 $(IMAGE_NAME)
 
 stop:
 	@docker stop $(CONTAINER_NAME)
