@@ -12,11 +12,18 @@ $ docker run -d -name fibgo-server -p 8080:8080 uudashr/fibgo
 ```
 
 ## Google Container Engine (GKE) Setup
-Make sure the clusters already created.
+Make sure the clusters already created along with the deployment.
 Then create the deployment
 
 ```shell
-$ kubectl create -f fibgo-app.yaml --record
+$ make init-cloud
+```
+
+## Prepare Travis
+Set environment variable on travis settings
+`GCLOUD_SERVICE_KEY` with the output of
+```shell
+$ base64 <google-service-account.json>
 ```
 
 ## Reference
