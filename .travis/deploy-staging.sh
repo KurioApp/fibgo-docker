@@ -9,7 +9,7 @@ gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
 gcloud --quiet config set project $PROJECT_NAME
 gcloud --quiet config set container/cluster $CLUSTER_NAME_STG
-gcloud --quiet config set compute/zone $CLOUDSDK_COMPUTE_ZONE
+gcloud --quiet config set compute/zone $COMPUTE_ZONE
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME_STG
 
 gcloud docker -- push asia.gcr.io/${PROJECT_NAME}/${DOCKER_IMAGE_NAME_STG}
