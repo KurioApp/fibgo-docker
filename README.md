@@ -4,7 +4,7 @@
 
 This is docker image for [fibgo](https://github.com/uudashr/fibgo) project.
 
-It contains travis script to deploy the docker on Google Container Engine (GKE). Every commit to *master* or *develop* will deploy to *production* or *staging* (respectively) cluster.
+It contains travis script to deploy the docker on Google Container Engine (GKE). Every commit to *master* or *develop* will deploy to *production* or *staging* cluster (respectively).
 
 ## How to run
 ```shell
