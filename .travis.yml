@@ -6,8 +6,10 @@ node_js:
   - "6"
 
 cache:
+  yarn: true
   directories:
     - "$HOME/google-cloud-sdk/"
+    - node_modules
 
 services:
   - docker
@@ -29,7 +31,9 @@ install:
   - yarn install
 
 script:
-  - yarn test
+  - docker build -t fibgo .
+  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 fibgo
+  - curl --fail http://127.0.0.1:8080/numbers || exit 1
 
 before_deploy:
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then
@@ -53,3 +57,7 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+
+after_script:
+  - docker stop fibgo-server
+  - docker rm -v fibgo-server
