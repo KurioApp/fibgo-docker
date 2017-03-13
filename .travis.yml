@@ -6,15 +6,15 @@ services:
   - docker
 
 script:
-  - docker build -t uudashr/fibgo .
-  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 uudashr/fibgo
+  - docker build -t uudashr/fibgo:legacy .
+  - docker run -d --name fibgo-server -p 127.0.0.1:8080:8080 uudashr/fibgo:legacy
   - docker ps -a
   - curl --fail http://127.0.0.1:8080/numbers || exit 1
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker push uudashr/fibgo;
+      docker push uudashr/fibgo:legacy;
     fi
 
 after_script:
