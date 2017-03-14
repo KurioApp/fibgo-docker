@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: fibgo
-          image: asia.gcr.io/kurio-dev/fibgo
+          image: asia.gcr.io/kurio-dev/fibgo:legacy
           ports:
             - containerPort: 8080
               name: http

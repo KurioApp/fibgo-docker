@@ -29,8 +29,8 @@ init-clusters: init-cluster-stg init-cluster-prod
 
 init-image:
 	@docker build -t fibgo .
-	@docker tag fibgo asia.gcr.io/kurio-dev/fibgo
-	@gcloud docker -- push asia.gcr.io/kurio-dev/fibgo
+	@docker tag fibgo asia.gcr.io/kurio-dev/fibgo:legacy
+	@gcloud docker -- push asia.gcr.io/kurio-dev/fibgo:legacy
 
 init-deployment-stg:
 	@gcloud --quiet config set container/cluster fibgo-cluster-stg
