@@ -1,4 +1,4 @@
-IMAGE_NAME=fibgo
+IMAGE_NAME=fibgo:legacy
 CONTAINER_NAME=fibgo-server
 
 build:
